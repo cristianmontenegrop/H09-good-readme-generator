@@ -1,0 +1,24 @@
+{
+  "name": "h09-good-readme-generator",
+  "version": "1.0.0",
+  "description": "H09 Homework",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "inquirer": "^7.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristianmontenegrop/H09-good-readme-generator.git"
+  },
+  "author": "Cristian Montenegro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cristianmontenegrop/H09-good-readme-generator/issues"
+  },
+  "homepage": "https://github.com/cristianmontenegrop/H09-good-readme-generator#readme"
+}
