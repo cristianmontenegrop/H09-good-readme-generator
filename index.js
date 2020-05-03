@@ -12,21 +12,18 @@ inquirer
         username
     }) {
         const queryUserUrl = `https://api.github.com/users/${username}`;
-        // console.log(queryUserUrl)
+
         axios.get(queryUserUrl).then(function ({
             data
         }) {
             const userData = data;
             const queryReposUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+
             axios.get(queryReposUrl).then(function (res) {
                 // console.log(res);
                 const repoNames = res.data.map(function (repo) {
                     return repo.name;
                 });
-                // const repoNamesStr = repoNames.join("','");
-
-                // console.log(repoNamesStr);
-
 
                 // Quiestions for the user
 
@@ -48,7 +45,7 @@ inquirer
                         name: "description"
                     }, {
                         type: "input",
-                        message: "What are the installation instructions?",
+                        message: "What's the installation instruction commands?",
                         name: "installation"
                     }, {
                         type: "input",
@@ -72,7 +69,7 @@ inquirer
                         name: "contributing"
                     }, {
                         type: "input",
-                        message: "Test instructions?",
+                        message: "Test instruction commands?",
                         name: "tests"
                     }, {
                         type: "input",
@@ -90,13 +87,12 @@ inquirer
                         questions
                     }) {
 
-                        console.log(repository);
-                        console.log(username);
                         console.log(userData)
+
                         const repoNamesStr = `
                     
 # ${name}
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/${username}/${repository})
+[![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](https://github.com/${username}/${repository})
 
 ## Description
 
@@ -160,7 +156,7 @@ ${questions}
                                 throw err;
                             }
 
-                            console.log(`README File created!`);
+                            console.log(`README File created, enjoy!`);
 
                         });
                     });
