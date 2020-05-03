@@ -11,85 +11,73 @@ inquirer
     }]).then(function ({
         username
     }) {
-        const queryUserUrl = `https://api.github.com/users/${username}`;
+        const queryReposUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
 
-        axios.get(queryUserUrl).then(function ({
-            data
-        }) {
-            const userData = data;
-            const queryReposUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
+        axios.get(queryReposUrl).then(function (res) {
 
-            axios.get(queryReposUrl).then(function (res) {
-                // console.log(res);
-                const repoNames = res.data.map(function (repo) {
-                    return repo.name;
-                });
+            // Quiestions for the user
+            inquirer
+                .prompt([{
+                    type: "list",
+                    message: `Which of this repos is your project? `,
+                    name: "repository",
+                    choices: res.data.map(function (repo) {
+                        return repo.name;
+                    })
+                }, {
+                    type: "input",
+                    message: "What is your project title?",
+                    name: "name"
+                }, {
+                    type: "input",
+                    message: "What is the description of the project?",
+                    name: "description"
+                }, {
+                    type: "input",
+                    message: "What's the installation instruction commands?",
+                    name: "installation"
+                }, {
+                    type: "input",
+                    message: "What would the Usage Section say?",
+                    name: "usage"
+                }, {
+                    type: "list",
+                    message: "What license would you prefer?",
+                    name: "license",
+                    choices: [
+                        "MIT",
+                        "Apache2.0",
+                        "ISC",
+                        "BSD",
+                        "GPLv3",
+                        "AGPLv3"
+                    ]
+                }, {
+                    type: "input",
+                    message: "Any notes on the Contributing section?",
+                    name: "contributing"
+                }, {
+                    type: "input",
+                    message: "Test instruction commands?",
+                    name: "tests"
+                }, {
+                    type: "input",
+                    message: "Anything on the Questions section?",
+                    name: "questions"
+                }]).then(function ({
+                    repository,
+                    name,
+                    description,
+                    installation,
+                    usage,
+                    license,
+                    contributing,
+                    tests,
+                    questions
+                }) {
 
-                // Quiestions for the user
-
-                inquirer
-                    .prompt([{
-                        type: "list",
-                        message: `Which of this repos is your project? `,
-                        name: "repository",
-                        choices: res.data.map(function (repo) {
-                            return repo.name;
-                        })
-                    }, {
-                        type: "input",
-                        message: "What is your project title?",
-                        name: "name"
-                    }, {
-                        type: "input",
-                        message: "What is the description of the project?",
-                        name: "description"
-                    }, {
-                        type: "input",
-                        message: "What's the installation instruction commands?",
-                        name: "installation"
-                    }, {
-                        type: "input",
-                        message: "What would the Usage Section say?",
-                        name: "usage"
-                    }, {
-                        type: "list",
-                        message: "What license would you prefer?",
-                        name: "license",
-                        choices: [
-                            "MIT",
-                            "Apache2.0",
-                            "ISC",
-                            "BSD",
-                            "GPLv3",
-                            "AGPLv3"
-                        ]
-                    }, {
-                        type: "input",
-                        message: "Any notes on the Contributing section?",
-                        name: "contributing"
-                    }, {
-                        type: "input",
-                        message: "Test instruction commands?",
-                        name: "tests"
-                    }, {
-                        type: "input",
-                        message: "Anything on the Questions section?",
-                        name: "questions"
-                    }]).then(function ({
-                        repository,
-                        name,
-                        description,
-                        installation,
-                        usage,
-                        license,
-                        contributing,
-                        tests,
-                        questions
-                    }) {
-
-                        console.log(userData)
-
-                        const repoNamesStr = `
+                    // Building of the readme.md content
+                    const repoNamesStr = `
                     
 # ${name}
 [![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](https://github.com/${username}/${repository})
@@ -151,15 +139,15 @@ ${questions}
 
 
                     `;
-                        fs.writeFile("README.md", repoNamesStr, function (err) {
-                            if (err) {
-                                throw err;
-                            }
 
-                            console.log(`README File created, enjoy!`);
+                    fs.writeFile("README.md", repoNamesStr, function (err) {
+                        if (err) {
+                            throw err;
+                        }
 
-                        });
+                        console.log(`README File created, enjoy!`);
+
                     });
-            });
+                });
         });
     });
