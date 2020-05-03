@@ -14,11 +14,9 @@ inquirer
         const queryUserUrl = `https://api.github.com/users/${username}`;
         // console.log(queryUserUrl)
         axios.get(queryUserUrl).then(function ({
-            userData
+            data
         }) {
-
-
-
+            const userData = data;
             const queryReposUrl = `https://api.github.com/users/${username}/repos?per_page=100`;
             axios.get(queryReposUrl).then(function (res) {
                 // console.log(res);
@@ -95,14 +93,14 @@ inquirer
                         console.log(repository);
                         console.log(username);
                         console.log(userData)
-                        const repoNamesStr = `Hello CRis!!!!! ${repository}, ${username}, 
+                        const repoNamesStr = `
                     
-# Google
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/johnfyoung/google)
+# ${name}
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/${username}/${repository})
 
 ## Description
 
-Google will search the internet for anything you want
+${description}
 
 ## Table of Contents 
 
@@ -122,37 +120,37 @@ Google will search the internet for anything you want
 
 To install necessary dependencies, run the following command:
 
-`
-                        ``
-                        "npm i"
-                        ``
-                        `
+
+                        
+                        '${installation}'
+                    
+                        
 
 ## Usage
 
-After clone make a copy of .env.sample, and fill in your environement variables.
+${usage}
 
 ## License
 
-This project is licensed under the MIT license.
+This project is licensed under the ${license} license.
   
 ## Contributing
 
-Hit me up on slack - I have lots for your to do.
+${contributing}
 
 ## Tests
 
 To run tests, run the following command:
 
-`
-                        ``
-                        "npm test"
-                        ``
-                        `
+
+                        
+                        '${tests}'
+                        
+                        
 
 ## Questions
 
-If you have any questions about the repo, open an issue or contact [johnfyoung](undefined) directly at john@codeandcreative.com.
+${questions}
 
 
 
