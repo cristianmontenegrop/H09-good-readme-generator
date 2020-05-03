@@ -92,14 +92,23 @@ inquirer
 
                     console.log(repository);
                     console.log(username);
-                    const repoNamesStr = `Hello CRis!!!!! ${repository}, ${username}, `;
+                    const repoNamesStr = `Hello CRis!!!!! ${repository}, ${username}, 
+                    
+                    
+                    
+                    `;
+
+
+
+
+
 
                     fs.writeFile("README.md", repoNamesStr, function (err) {
                         if (err) {
                             throw err;
                         }
 
-                        console.log(`Saved ${repoNames.length} repos`);
+                        // console.log(`Saved ${repoNames.length} repos`);
 
                         // Write file Piece
 
