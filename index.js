@@ -57,7 +57,7 @@ inquirer
                         name: "license",
                         choices: [
                             "MIT",
-                            "Apache 2.0",
+                            "Apache2.0",
                             "ISC",
                             "BSD",
                             "GPLv3",
