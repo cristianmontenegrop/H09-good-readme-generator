@@ -1,11 +1,11 @@
 
                     
 # Good Readme Generator
-[![GitHub license](https://img.shields.io/badge/license-Apache2.0-blue.svg)](https://github.com/cristianmontenegrop/H09-good-readme-generator)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cristianmontenegrop/H09-good-readme-generator)
 
 ## Description
 
-This Generator will generate a readme file for your projects
+Readme generator app that eases work and creates a beautiful readme file for your projects!
 
 ## Table of Contents 
 
@@ -33,15 +33,15 @@ To install necessary dependencies, run the following command:
 
 ## Usage
 
-After clone make a copy of .env.sample, and fill in your environement variables.
+After clone make a copy of .env.sample, and fill in tour environment variables
 
 ## License
 
-This project is licensed under the Apache 2.0 license.
+This project is licensed under the MIT license.
   
 ## Contributing
 
-Hit me up on Slack - I have lots for your to do
+Slack me any time!
 
 ## Tests
 
@@ -55,7 +55,7 @@ To run tests, run the following command:
 
 ## Questions
 
-If you have quiestions, please write to cristian.montenegro.p@gmail.com
+If you need further assistance contact me at cristian.montenegro.p@gmail.com
 
 
 
