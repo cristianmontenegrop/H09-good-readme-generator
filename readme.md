@@ -5,8 +5,9 @@
 
 ## Description
 
-Readme generator app that eases work and creates a beautiful readme file for your projects!
+Application that generates a readme file for repositories as means to make the process easy and quick. 
 
+[A GIF of the working application can be found here](https://media.giphy.com/media/YN7EyY4hWdS82Rmxwu/giphy.gif)
 ## Table of Contents 
 
 * [Installation](#installation)
@@ -33,7 +34,7 @@ To install necessary dependencies, run the following command:
 
 ## Usage
 
-After clone make a copy of .env.sample, and fill in tour environment variables
+After cloning, execute 'node app.js' and follow the given prompts
 
 ## License
 
@@ -41,7 +42,7 @@ This project is licensed under the MIT license.
   
 ## Contributing
 
-Slack me any time!
+Reach out through Slack, ID: UTW6F607J
 
 ## Tests
 
@@ -49,13 +50,13 @@ To run tests, run the following command:
 
 
                         
-                        'npm test'
+                        'npm run test'
                         
                         
 
 ## Questions
 
-If you need further assistance contact me at cristian.montenegro.p@gmail.com
+IF you need further assistance contact me at cristian.montenegro.p@gmail.com
 
 
 
