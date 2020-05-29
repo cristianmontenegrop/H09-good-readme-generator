@@ -1,13 +1,12 @@
 
                     
-# Good Readme Generator
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cristianmontenegrop/H09-good-readme-generator)
+# Employee Tracker
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cristianmontenegrop/H12-Employee-Tracker)
 
 ## Description
 
-Application that generates a readme file for repositories as means to make the process easy and quick. 
+This tool is known as Content Management System, its a solution for managing a company's employees, it uses a database to store the information. Simply add your departments, employee roles, employees, salaries and this tool will take care of keeping your data organized and accessible.
 
-[A GIF of the working application can be found here](https://media.giphy.com/media/YN7EyY4hWdS82Rmxwu/giphy.gif)
 ## Table of Contents 
 
 * [Installation](#installation)
@@ -34,7 +33,7 @@ To install necessary dependencies, run the following command:
 
 ## Usage
 
-After cloning, execute 'node app.js' and follow the given prompts
+Once you have the application from [this github repository](https://github.com/cristianmontenegrop/H12-Employee-Tracker), access CMS.js through your terminal window and you'll be presented with a main menu with all the features this application has.
 
 ## License
 
@@ -42,7 +41,7 @@ This project is licensed under the MIT license.
   
 ## Contributing
 
-Reach out through Slack, ID: UTW6F607J
+If you wish to cotribute feel free to reach out through Slack, my ID: UTW6F607J.
 
 ## Tests
 
@@ -50,13 +49,13 @@ To run tests, run the following command:
 
 
                         
-                        'npm run test'
+                        'no'
                         
                         
 
 ## Questions
 
-IF you need further assistance contact me at cristian.montenegro.p@gmail.com
+For further assistance feel free to [Email me](mailto:cristian.montenegro.p@gmail.com)
 
 
 

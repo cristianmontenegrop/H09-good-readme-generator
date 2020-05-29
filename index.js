@@ -140,7 +140,7 @@ ${questions}
 
                     `;
 
-                    fs.writeFile("README.md", repoNamesStr, function (err) {
+                    fs.writeFile("./output/README.md", repoNamesStr, function (err) {
                         if (err) {
                             throw err;
                         }
