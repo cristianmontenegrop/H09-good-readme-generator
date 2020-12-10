@@ -1,7 +1,7 @@
 {
-  "name": "h09-good-readme-generator",
+  "name": "good-readme-generator",
   "version": "1.0.0",
-  "description": "H09 Homework",
+  "description": "readme.md generator",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.19.2",
@@ -10,7 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

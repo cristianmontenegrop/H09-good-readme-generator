@@ -59,4 +59,8 @@ For further assistance feel free to [Email me](mailto:cristian.montenegro.p@gmai
 
 
 
-                    
+ ## Technologies    
+
+ - React - Heroku - Node - Express
+ - React Bootstrap
+ 

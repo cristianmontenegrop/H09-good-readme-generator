@@ -15,139 +15,274 @@ inquirer
 
         axios.get(queryReposUrl).then(function (res) {
 
-            // Quiestions for the user
             inquirer
                 .prompt([{
-                    type: "list",
-                    message: `Which of this repos is your project? `,
-                    name: "repository",
-                    choices: res.data.map(function (repo) {
-                        return repo.name;
-                    })
-                }, {
-                    type: "input",
-                    message: "What is your project title?",
-                    name: "name"
-                }, {
-                    type: "input",
-                    message: "What is the description of the project?",
-                    name: "description"
-                }, {
-                    type: "input",
-                    message: "What's the installation instruction commands?",
-                    name: "installation"
-                }, {
-                    type: "input",
-                    message: "What would the Usage Section say?",
-                    name: "usage"
-                }, {
-                    type: "list",
-                    message: "What license would you prefer?",
-                    name: "license",
+                    type: 'checkbox',
+                    name: 'optSelection',
+                    message: 'Which of these would you like to have in the readme?',
                     choices: [
-                        "MIT",
-                        "Apache2.0",
-                        "ISC",
-                        "BSD",
-                        "GPLv3",
-                        "AGPLv3"
-                    ]
-                }, {
-                    type: "input",
-                    message: "Any notes on the Contributing section?",
-                    name: "contributing"
-                }, {
-                    type: "input",
-                    message: "Test instruction commands?",
-                    name: "tests"
-                }, {
-                    type: "input",
-                    message: "Anything on the Questions section?",
-                    name: "questions"
-                }]).then(function ({
-                    repository,
-                    name,
-                    description,
-                    installation,
-                    usage,
-                    license,
-                    contributing,
-                    tests,
-                    questions
-                }) {
+                        'installation', 'usage', 'tests', 'contributing', 'questions',
+                    ],
+                }])
+                .then((optionalsSelection) => {
+                    console.log("optionalSelection: ", optionalsSelection);
+                    // optionalsSelection = optionalsSelection.optSelection;
+                    console.log("optionalSelection: ", optionalsSelection.optSelection);
+                    const finalPrompts = [{
+                        type: "list",
+                        message: `Which of this repos is your project? `,
+                        name: "repository",
+                        choices: res.data.map(function (repo) {
+                            return repo.name;
+                        })
+                    }, {
+                        type: "input",
+                        message: "What is your project title?",
+                        name: "name"
+                    }, {
+                        type: "input",
+                        message: "What is your project's URL?",
+                        name: "url"
+                    }, {
+                        type: "input",
+                        message: "What is the project demonstartion's file path (*.gif preferably)?",
+                        name: "demonstration"
+                    }, {
+                        type: "input",
+                        message: "What is the description of the project?",
+                        name: "description"
+                    }, {
+                        type: "input",
+                        message: "What are the technologies used? (remember to add ',' between each technology",
+                        name: "technologies"
+                    }, {
+                        type: "list",
+                        message: "What license would you prefer?",
+                        name: "license",
+                        choices: [
+                            "MIT",
+                            "Apache2.0",
+                            "ISC",
+                            "BSD",
+                            "GPLv3",
+                            "AGPLv3"
+                        ]
+                    }];
+                    const selectedOptionals = optionalsSelection.optSelection.map((item) => {
 
-                    // Building of the readme.md content
-                    const repoNamesStr = `
-                    
-# ${name}
-[![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)](https://github.com/${username}/${repository})
+                        if (item === 'installation') {
+                            return {
+                                type: "input",
+                                message: "What's the installation instruction commands?",
+                                name: "installation"
+                            };
+                        } else if (item === 'usage') {
+                            return {
+                                type: "input",
+                                message: "What would the Usage Section say?",
+                                name: "usage"
+                            }
+                        } else if (item === 'tests') {
+                            return {
+                                type: "input",
+                                message: "Test instruction commands?",
+                                name: "tests"
+                            }
+                        } else if (item === 'contributing') {
+                            return {
+                                type: "input",
+                                message: "Any notes on the Contributing section?",
+                                name: "contributing"
+                            }
+                        } else if (item === 'questions') {
 
-## Description
+                            return {
+                                type: "input",
+                                message: "Anything on the Questions section?",
+                                name: "questions"
+                            }
+                        };
+                    })
+                    console.log("selectedOptionals is: ", selectedOptionals);
+                    finalPrompts.splice(6, 0, ...selectedOptionals)
+                    console.log("final prompts::", finalPrompts);
+                    // Final questions for the user
+                    inquirer
+                        .prompt(finalPrompts)
+                        .then((
+                            renderInputs
+                        ) => {
+                            console.log("renderInputs is:", renderInputs);
+                            // Creating a list for Technologies
+                            renderInputs.technologies = renderInputs.technologies.substring(1);
+                            var technologiesList = renderInputs.technologies.split(",");
 
-${description}
+                            technologiesList = technologiesList.map((item) => {
+                                item = '<li>' + item + '</li>';
+                                return item;
+                            });
 
-## Table of Contents 
+                            technologiesList = technologiesList.join('');
+                            technologiesList = '<ul>' + technologiesList + '</ul>'
 
-* [Installation](#installation)
+                            // Building of the readme.md content
+                            const repoNamesStr = `
+                
+                            # ${renderInputs.name}
+                            [![GitHub license](https://img.shields.io/badge/license-${renderInputs.license}-blue.svg)](https://github.com/${username}/${renderInputs.repository})
+                            [![GitHub license](https://img.shields.io/badge/license-${renderInputs.license}-green.svg)](${renderInputs.url})
 
-* [Usage](#usage)
+                            ## Table of Contents 
 
-* [License](#license)
+                            * [Demonstration](#Demonstration)
 
-* [Contributing](#contributing)
+                            * [Description](#Description)
 
-* [Tests](#tests)
+                            * [Installation](#installation)
 
-* [Questions](#questions)
+                            * [Usage](#usage)
 
-## Installation
+                            * [License](#license)
 
-To install necessary dependencies, run the following command:
+                            * [Contributing](#contributing)
 
+                            * [Tests](#tests)
 
-                        
-                        '${installation}'
-                    
-                        
+                            * [Questions](#questions)
 
-## Usage
+                            ## Demonstration
 
-${usage}
+                            [![Foo](${renderInputs.demonstration})](${renderInputs.url}) 
 
-## License
+                            ## Description
 
-This project is licensed under the ${license} license.
-  
-## Contributing
+                            ${renderInputs.description}
 
-${contributing}
+                            ## Technologies
 
-## Tests
+                            ${renderInputs.technologiesList}
 
-To run tests, run the following command:
+                            ## Installation
 
-
-                        
-                        '${tests}'
-                        
-                        
-
-## Questions
-
-${questions}
+                            To install necessary dependencies, run the following command:
 
 
+                                                    
+                                                    '${renderInputs.installation}'
+                                                
+                                                    
 
-                    `;
+                            ${() => {
+                                    if (renderInputs.usage) {
+                                        return "## Usage "
 
-                    fs.writeFile("./output/README.md", repoNamesStr, function (err) {
-                        if (err) {
-                            throw err;
-                        }
+                                            + renderInputs.usage + " "
+                                    }
+                                }}
+                                ${() => {
+                                    if (renderInputs.contributing) {
+                                        return "                            ## Contributing "
 
-                        console.log(`README File created, enjoy!`);
+                                            + renderInputs.contributing + " "
+                                    }
+                                }}
 
-                    });
-                });
+                                ${() => {
+                                    if (renderInputs.contributing) {
+                                        return "                            ## Tests        \n To run tests, run the following command: "
+
+                                            , "'", renderInputs.tests, ","
+                                    }
+                                }}
+                                                    
+                            ## Questions
+
+                            ${renderInputs.questions}
+
+                            ## License
+
+                            This project is licensed under the ${renderInputs.license} license.
+
+
+                                                `;
+
+                            fs.writeFile("./output/README.md", repoNamesStr, function (err) {
+                                if (err) {
+                                    throw err;
+                                }
+
+                                console.log(`README File created, enjoy!`);
+
+                            });
+                        });
+                })
+
+
+
         });
     });
+
+
+
+
+    // inquirer
+    // .prompt([{
+    //     type: "list",
+    //     message: `Which of this repos is your project? `,
+    //     name: "repository",
+    //     choices: res.data.map(function (repo) {
+    //         return repo.name;
+    //     })
+    // }, {
+    //     type: "input",
+    //     message: "What is your project title?",
+    //     name: "name"
+    // }, {
+    //     type: "input",
+    //     message: "What is your project's URL?",
+    //     name: "url"
+    // }, {
+    //     type: "input",
+    //     message: "What is the project demonstartion's file path (*.gif preferably)?",
+    //     name: "demonstration"
+    // }, {
+    //     type: "input",
+    //     message: "What is the description of the project?",
+    //     name: "description"
+    // }, {
+    //     type: "input",
+    //     message: "What are the technologies used? (remember to add ',' between each technology",
+    //     name: "technologies"
+    // }, {
+    //     type: "input",
+    //     message: "What's the installation instruction commands?",
+    //     name: "installation"
+    // }, {
+    //     type: "input",
+    //     message: "What would the Usage Section say?",
+    //     name: "usage"
+    // }, {
+    //     type: "input",
+    //     message: "Test instruction commands?",
+    //     name: "tests"
+    // }, {
+    //     type: "input",
+    //     message: "Any notes on the Contributing section?",
+    //     name: "contributing"
+    // }, {
+    //     type: "input",
+    //     message: "Anything on the Questions section?",
+    //     name: "questions"
+    // }, {
+    //     type: "list",
+    //     message: "What license would you prefer?",
+    //     name: "license",
+    //     choices: [
+    //         "MIT",
+    //         "Apache2.0",
+    //         "ISC",
+    //         "BSD",
+    //         "GPLv3",
+    //         "AGPLv3"
+    //     ]
+    // }]
