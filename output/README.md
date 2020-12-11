@@ -1,7 +1,7 @@
 
                 
-# title project
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cristianmontenegrop/Activity-saturday-04-04)
+# title
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cristianmontenegrop/1)
 [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](url)
 
 ## Table of Contents 
@@ -32,16 +32,11 @@ description project
 
 ## Technologies
 
-<ul><li>REACT</li><li> SQL</li><li> EXPRESS</li><li> NODE.JS</li></ul>
+<ul><li>react</li><li> express</li></ul>
 
                     
-() => {
-                                    if (renderInputs.installation) {
-                                        return "                           ## Installation        \n To install necessary dependencies, run the following command: "
-
-                                            , "'", renderInputs.installation, ","
-                                    }
-                                }                   
+## Installation 
+ To install necessary dependencies, run the following command: 'npm i ';                   
 
 () => {
                                     if (renderInputs.usage) {

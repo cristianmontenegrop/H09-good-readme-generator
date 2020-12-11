@@ -115,7 +115,7 @@ inquirer
                             console.log("renderInputs is:", renderInputs);
 
                             // Creating a list for Technologies
-                            // renderInputs.technologies = renderInputs.technologies.substring(1);
+
                             var technologiesList = renderInputs.technologies.split(",");
 
                             technologiesList = technologiesList.map((item) => {
@@ -126,8 +126,17 @@ inquirer
                             technologiesList = technologiesList.join('');
                             technologiesList = '<ul>' + technologiesList + '</ul>'
 
+                            // Creating optional body section elements 
+                            let installationRender = '';
 
+                            installationFunc = () => {
+                                if (renderInputs.installation) {
+                                    installationRender = "## Installation \n To install necessary dependencies, run the following command: '" + renderInputs.installation + "'";
+                                    return;
+                                };
+                            };
 
+                            installationFunc();
 
                             // Building of the readme.md content
                             const repoNamesStr = `
@@ -167,13 +176,7 @@ ${renderInputs.description}
 ${technologiesList}
 
                     
-${() => {
-                                    if (renderInputs.installation) {
-                                        return "                           ## Installation        \n To install necessary dependencies, run the following command: "
-
-                                            , "'", renderInputs.installation, ","
-                                    }
-                                }}                   
+${installationRender}                   
 
 ${() => {
                                     if (renderInputs.usage) {
