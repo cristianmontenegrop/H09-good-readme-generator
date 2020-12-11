@@ -127,7 +127,7 @@ inquirer
                             technologiesList = '<ul>' + technologiesList + '</ul>'
 
                             // Creating optional body section elements 
-                            let installationRender, usageRender = '';
+                            let installationRender, usageRender, testRender = '';
 
                             installationFunc = () => {
                                 if (renderInputs.installation) {
@@ -141,9 +141,16 @@ inquirer
                                     return
                                 }
                             };
+                            testFunc = () => {
+                                if (renderInputs.tests) {
+                                    testRender = "## Tests \n To run tests, run the following command: " + "'" + renderInputs.tests + "'"
+                                    return;
+                                }
+                            };
 
                             installationFunc();
                             usageFunc();
+                            testFunc();
                             // Building of the readme.md content
                             const repoNamesStr = `
                 
@@ -186,13 +193,7 @@ ${installationRender}
 
 ${usageRender}
 
-${() => {
-                                    if (renderInputs.tests) {
-                                        return "                            ## Tests        \n To run tests, run the following command: "
-
-                                            , "'", renderInputs.tests, "'"
-                                    }
-                                }}
+${testRender}
 
 ${() => {
                                     if (renderInputs.contributing) {
