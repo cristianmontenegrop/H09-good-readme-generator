@@ -113,8 +113,9 @@ inquirer
                             renderInputs
                         ) => {
                             console.log("renderInputs is:", renderInputs);
+
                             // Creating a list for Technologies
-                            renderInputs.technologies = renderInputs.technologies.substring(1);
+                            // renderInputs.technologies = renderInputs.technologies.substring(1);
                             var technologiesList = renderInputs.technologies.split(",");
 
                             technologiesList = technologiesList.map((item) => {
@@ -125,61 +126,72 @@ inquirer
                             technologiesList = technologiesList.join('');
                             technologiesList = '<ul>' + technologiesList + '</ul>'
 
+
+
+
                             // Building of the readme.md content
                             const repoNamesStr = `
                 
-                            # ${renderInputs.name}
-                            [![GitHub license](https://img.shields.io/badge/license-${renderInputs.license}-blue.svg)](https://github.com/${username}/${renderInputs.repository})
-                            [![GitHub license](https://img.shields.io/badge/license-${renderInputs.license}-green.svg)](${renderInputs.url})
+# ${renderInputs.name}
+[![GitHub license](https://img.shields.io/badge/license-${renderInputs.license}-blue.svg)](https://github.com/${username}/${renderInputs.repository})
+[![GitHub license](https://img.shields.io/badge/license-${renderInputs.license}-green.svg)](${renderInputs.url})
 
-                            ## Table of Contents 
+## Table of Contents 
 
-                            * [Demonstration](#Demonstration)
+* [Demonstration](#Demonstration)
 
-                            * [Description](#Description)
+* [Description](#Description)
 
-                            * [Installation](#installation)
+* [Installation](#installation)
 
-                            * [Usage](#usage)
+* [Usage](#usage)
 
-                            * [License](#license)
+* [License](#license)
 
-                            * [Contributing](#contributing)
+* [Contributing](#contributing)
 
-                            * [Tests](#tests)
+* [Tests](#tests)
 
-                            * [Questions](#questions)
+* [Questions](#questions)
 
-                            ## Demonstration
+## Demonstration
 
-                            [![Foo](${renderInputs.demonstration})](${renderInputs.url}) 
+[![Foo](${renderInputs.demonstration})](${renderInputs.url}) 
 
-                            ## Description
+## Description
 
-                            ${renderInputs.description}
+${renderInputs.description}
 
-                            ## Technologies
+## Technologies
 
-                            ${renderInputs.technologiesList}
+${technologiesList}
 
-                            ## Installation
+                    
+${() => {
+                                    if (renderInputs.installation) {
+                                        return "                           ## Installation        \n To install necessary dependencies, run the following command: "
 
-                            To install necessary dependencies, run the following command:
+                                            , "'", renderInputs.installation, ","
+                                    }
+                                }}                   
 
-
-                                                    
-                                                    '${renderInputs.installation}'
-                                                
-                                                    
-
-                            ${() => {
+${() => {
                                     if (renderInputs.usage) {
                                         return "## Usage "
 
                                             + renderInputs.usage + " "
                                     }
                                 }}
-                                ${() => {
+
+${() => {
+                                    if (renderInputs.tests) {
+                                        return "                            ## Tests        \n To run tests, run the following command: "
+
+                                            , "'", renderInputs.tests, "'"
+                                    }
+                                }}
+
+${() => {
                                     if (renderInputs.contributing) {
                                         return "                            ## Contributing "
 
@@ -187,24 +199,20 @@ inquirer
                                     }
                                 }}
 
-                                ${() => {
-                                    if (renderInputs.contributing) {
-                                        return "                            ## Tests        \n To run tests, run the following command: "
+${() => {
+                                    if (renderInputs.questions) {
+                                        return "                            ## Questions        "
 
-                                            , "'", renderInputs.tests, ","
+                                            , renderInputs.questions
                                     }
                                 }}
-                                                    
-                            ## Questions
 
-                            ${renderInputs.questions}
+## License
 
-                            ## License
-
-                            This project is licensed under the ${renderInputs.license} license.
+This project is licensed under the ${renderInputs.license} license.
 
 
-                                                `;
+                    `;
 
                             fs.writeFile("./output/README.md", repoNamesStr, function (err) {
                                 if (err) {
