@@ -25,9 +25,7 @@ inquirer
                     ],
                 }])
                 .then((optionalsSelection) => {
-                    console.log("optionalSelection: ", optionalsSelection);
-                    // optionalsSelection = optionalsSelection.optSelection;
-                    console.log("optionalSelection: ", optionalsSelection.optSelection);
+
                     const finalPrompts = [{
                         type: "list",
                         message: `Which of this repos is your project? `,
@@ -104,20 +102,19 @@ inquirer
                             }
                         };
                     })
-                    console.log("selectedOptionals is: ", selectedOptionals);
+
                     finalPrompts.splice(6, 0, ...selectedOptionals)
-                    console.log("final prompts::", finalPrompts);
+
                     // Final questions for the user
                     inquirer
                         .prompt(finalPrompts)
                         .then((
                             renderInputs
                         ) => {
-                            console.log("renderInputs is:", renderInputs);
 
                             // Creating a list for Technologies
 
-                            var technologiesList = renderInputs.technologies.split(",");
+                            let technologiesList = renderInputs.technologies.split(",");
 
                             technologiesList = technologiesList.map((item) => {
                                 item = '<li>' + item + '</li>';
@@ -130,6 +127,9 @@ inquirer
                             // Creating optional body section elements 
                             let installationRender, usageRender, testRender, contributingRender, questionsRender = '';
 
+                            optionalElementsFunc = () => {
+
+                            }
                             installationFunc = () => {
                                 if (renderInputs.installation) {
                                     installationRender = "## Installation \n To install necessary dependencies, run the following command: '" + renderInputs.installation + "'";
@@ -169,7 +169,6 @@ inquirer
 
                             // Creating a Table of Contents
                             let tableOfContentsRender = "";
-
                             tableOfContentsFunc = () => {
 
                                 if (renderInputs.contributing) {
@@ -252,68 +251,3 @@ This project is licensed under the ${renderInputs.license} license.
 
         });
     });
-
-
-
-
-    // inquirer
-    // .prompt([{
-    //     type: "list",
-    //     message: `Which of this repos is your project? `,
-    //     name: "repository",
-    //     choices: res.data.map(function (repo) {
-    //         return repo.name;
-    //     })
-    // }, {
-    //     type: "input",
-    //     message: "What is your project title?",
-    //     name: "name"
-    // }, {
-    //     type: "input",
-    //     message: "What is your project's URL?",
-    //     name: "url"
-    // }, {
-    //     type: "input",
-    //     message: "What is the project demonstartion's file path (*.gif preferably)?",
-    //     name: "demonstration"
-    // }, {
-    //     type: "input",
-    //     message: "What is the description of the project?",
-    //     name: "description"
-    // }, {
-    //     type: "input",
-    //     message: "What are the technologies used? (remember to add ',' between each technology",
-    //     name: "technologies"
-    // }, {
-    //     type: "input",
-    //     message: "What's the installation instruction commands?",
-    //     name: "installation"
-    // }, {
-    //     type: "input",
-    //     message: "What would the Usage Section say?",
-    //     name: "usage"
-    // }, {
-    //     type: "input",
-    //     message: "Test instruction commands?",
-    //     name: "tests"
-    // }, {
-    //     type: "input",
-    //     message: "Any notes on the Contributing section?",
-    //     name: "contributing"
-    // }, {
-    //     type: "input",
-    //     message: "Anything on the Questions section?",
-    //     name: "questions"
-    // }, {
-    //     type: "list",
-    //     message: "What license would you prefer?",
-    //     name: "license",
-    //     choices: [
-    //         "MIT",
-    //         "Apache2.0",
-    //         "ISC",
-    //         "BSD",
-    //         "GPLv3",
-    //         "AGPLv3"
-    //     ]
-    // }]
