@@ -68,6 +68,7 @@ inquirer
                             "AGPLv3"
                         ]
                     }];
+
                     const selectedOptionals = optionalsSelection.optSelection.map((item) => {
 
                         if (item === 'installation') {
@@ -132,39 +133,64 @@ inquirer
                             installationFunc = () => {
                                 if (renderInputs.installation) {
                                     installationRender = "## Installation \n To install necessary dependencies, run the following command: '" + renderInputs.installation + "'";
-                                    return;
                                 };
+                                return;
                             };
                             usageFunc = () => {
                                 if (renderInputs.usage) {
                                     usageRender = "## Usage \n " + renderInputs.usage + " "
-                                    return
-                                }
+                                };
+                                return;
                             };
                             testFunc = () => {
                                 if (renderInputs.tests) {
                                     testRender = "## Tests \n To run tests, run the following command: " + "'" + renderInputs.tests + "'"
-                                    return;
-                                }
+                                };
+                                return;
                             };
                             contributingFunc = () => {
                                 if (renderInputs.contributing) {
                                     contributingRender = "## Contributing \n" + renderInputs.contributing + " "
-                                    return;
-                                }
+                                };
+                                return;
                             };
                             questionsFunc = () => {
                                 if (renderInputs.questions) {
                                     questionsRender = "## Questions \n " + renderInputs.questions;
-                                    return;
-                                }
-                            }
+                                };
+                                return;
+                            };
 
                             installationFunc();
                             usageFunc();
                             testFunc();
                             contributingFunc();
                             questionsFunc();
+
+                            // Creating a Table of Contents
+                            let tableOfContentsRender = "";
+
+                            tableOfContentsFunc = () => {
+
+                                if (renderInputs.contributing) {
+                                    tableOfContentsRender = "* [Contributing](#contributing)\n" + tableOfContentsRender;
+                                };
+                                if (renderInputs.questions) {
+                                    tableOfContentsRender = "* [Questions](#questions)\n" + tableOfContentsRender;
+                                };
+                                if (renderInputs.tests) {
+                                    tableOfContentsRender = "* [Tests](#tests)\n" + tableOfContentsRender;
+                                }
+                                if (renderInputs.usage) {
+                                    tableOfContentsRender = "* [Usage](#usage)\n" + tableOfContentsRender;
+                                };
+                                if (renderInputs.installation) {
+                                    tableOfContentsRender = "* [Installation](#installation)\n" + tableOfContentsRender;
+                                };
+                                return;
+                            };
+                            tableOfContentsFunc();
+
                             // Building of the readme.md content
                             const repoNamesStr = `
                 
@@ -178,17 +204,9 @@ inquirer
 
 * [Description](#Description)
 
-* [Installation](#installation)
-
-* [Usage](#usage)
+${tableOfContentsRender}
 
 * [License](#license)
-
-* [Contributing](#contributing)
-
-* [Tests](#tests)
-
-* [Questions](#questions)
 
 ## Demonstration
 

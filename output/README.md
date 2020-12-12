@@ -1,8 +1,8 @@
 
                 
-# title
+# PROJECT TITLE
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cristianmontenegrop/1)
-[![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](url)
+[![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](URL)
 
 ## Table of Contents 
 
@@ -11,64 +11,40 @@
 * [Description](#Description)
 
 * [Installation](#installation)
-
 * [Usage](#usage)
+* [Tests](#tests)
+* [Questions](#questions)
+* [Contributing](#contributing)
+
 
 * [License](#license)
 
-* [Contributing](#contributing)
-
-* [Tests](#tests)
-
-* [Questions](#questions)
-
 ## Demonstration
 
-[![Foo](.gif)](url) 
+[![Foo](.GIF FILE)](URL) 
 
 ## Description
 
-description project
+PROJECT DESCRIPTION
 
 ## Technologies
 
-<ul><li>react</li><li> express</li></ul>
-
-                    
+<ul><li>REACT</li><li> GATSBY</li><li> GRAPHQL</li><li> EXPRESS</li></ul>
+              
 ## Installation 
- To install necessary dependencies, run the following command: 'npm i ';                   
+ To install necessary dependencies, run the following command: 'NPM I'                   
 
-() => {
-                                    if (renderInputs.usage) {
-                                        return "## Usage "
+## Usage 
+ NPM START 
 
-                                            + renderInputs.usage + " "
-                                    }
-                                }
+## Tests 
+ To run tests, run the following command: 'NPM TEST'
 
-() => {
-                                    if (renderInputs.tests) {
-                                        return "                            ## Tests        \n To run tests, run the following command: "
+## Contributing 
+CONTRIBUTE PLEASE! 
 
-                                            , "'", renderInputs.tests, "'"
-                                    }
-                                }
-
-() => {
-                                    if (renderInputs.contributing) {
-                                        return "                            ## Contributing "
-
-                                            + renderInputs.contributing + " "
-                                    }
-                                }
-
-() => {
-                                    if (renderInputs.questions) {
-                                        return "                            ## Questions        "
-
-                                            , renderInputs.questions
-                                    }
-                                }
+## Questions 
+ QUESTIONS? 
 
 ## License
 
